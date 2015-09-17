@@ -57,6 +57,3 @@ Run ( from your project folder ) :
     ```
     $ gulp
     ```
-
-
-
