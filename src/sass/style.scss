@@ -1,0 +1,112 @@
+/**
+ *  $TABLE OF CONTENTS
+ *  based generally on Harry Roberts excellent CSS Guidelines
+ *  https://github.com/csswizardry/CSS-Guidelines
+ **/
+
+// /**
+//  * VARIABLES..............................Declarations of Sass variables
+//  * .....Colors
+//  * .....Typography
+//  * .....Layout
+//  * .....Defaults
+//  * .....Breakpoints
+//  * MIXINS.................................Sass mixins
+/**
+ * NORMALIZE..............................Set normalize defaults
+ * GLOBAL CLASSES.........................Set reset defaults
+ * GLOBAL ELEMENTS........................Establish global styles
+ * .....Main
+ * .....Headings
+ * .....Text-related elements (p, blockquote, lists)
+ * .....Defaults
+ * .....Breakpoints
+ * TYPOGRAPHY------------------------------
+ * MEDIA-----------------------------------
+ * LAYOUT----------------------------------
+ * NAVIGATION------------------------------
+ * TOC To Be Continued
+ **/
+
+
+// ------------------------------------
+// $VARIABLES
+// ------------------------------------
+@import "generic/variables";
+
+// ------------------------------------
+// $MIXINS
+// ------------------------------------
+@import "generic/mixins";
+
+
+// ------------------------------------
+// $GRID
+// ------------------------------------
+@import "susy/sass/susy";
+
+
+/*************************************
+ *   $NORMALIZE
+ ************************************/
+@import "generic/normalize";
+
+
+/*************************************
+ *   $GLOBAL ELEMENTS
+ ************************************/
+@import "font";
+@import "base/font-familly";
+
+@import "base/global-classes";
+@import "base/main";
+@import "base/logo";
+@import "base/links";
+@import "base/headings";
+@import "base/text";
+@import "base/button";
+@import "base/lists";
+@import "base/media";
+@import "base/forms";
+@import "base/tables";
+
+/*************************************
+ *   $LAYOUT
+ ************************************/
+// @import "layouts/layouts";
+
+
+/*************************************
+ *   $PAGE STRUCTURE
+ ************************************/
+// @import "objects/header";
+// @import "objects/nav";
+// @import "objects/selector";
+// @import "objects/main";
+// @import "objects/footer";
+
+
+/*************************************
+ *   $TEXT Styles
+ ************************************/
+
+
+
+/*************************************
+ *   $COMPONENTS
+ ************************************/
+// @import "objects/carousels";
+// @import "objects/dropdown";
+// @import "objects/lists";
+// @import "objects/tooltip";
+// @import "objects/accordion";
+// @import "objects/tabs";
+// @import "objects/article";
+// @import "objects/comments";
+// @import "objects/messaging";
+
+
+/*************************************
+ *   $PRINT STYLE
+ ************************************/
+ // @import "layouts/print";

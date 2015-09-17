@@ -1,0 +1,91 @@
+/*----------- Headings ---------------*/
+// Further Reading: http:/csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css/
+h1, .alpha,
+h2, .beta,
+h3, .gamma{
+    line-height : 1.2;
+    margin      : 0;
+    font-weight : 400;
+}
+
+h1, .alpha{
+    @include rem(font-size, 2.4rem);
+}
+
+h2, .beta{
+	@include rem(font-size, 3.0rem);
+    @include rem(margin-bottom, 2.5rem);
+    @include rem(padding, 3.5rem);
+    @include rem(padding-left, 1.5rem);
+    background-color: $bw_blue_alt;
+    color: $white;
+    &:before{
+        content: "{BW}";
+        font-family: $bw-font-bold;
+        color: $bw_blue;
+        @include rem( font-size, 7rem);
+        display: block;
+        float: left;
+        margin: -22px 15px 0 0;
+    }
+}
+
+h3, .gamma{
+    @include rem(font-size, 2.0rem);
+    @include rem(margin-top, 2.0rem);
+    @include rem(margin-bottom, 2.0rem);
+    @include rem(padding-bottom, 1.0rem);
+    border-bottom: 1px solid $bw_blue_alt;
+    color: $bw_blue_alt;
+}
+
+h4, .delta{
+    @include rem(font-size, 1.4rem);
+    @include rem(margin-top, 2.1rem);
+    @include rem(margin-bottom, 0.7rem);
+    &:before{
+        content: "";
+        width: 12px;
+        height: 12px;
+        background-color: $bw_blue_alt;
+        background-size: contain;
+        border-radius: 50%;
+        display: block;
+        float: left;
+        margin: 6px 6px 0 0;
+    }
+}
+
+h5, .epsilon{
+    font-size: 1.0em;
+    margin: 0.2em 0;
+    font-style: italic;
+}
+
+h6, .zeta{
+    font-weight: 400;
+}
+
+/*----------- Subheadings ---------------*/
+.subheading {
+	font-family: $font-secondary;
+	font-weight: normal;
+}
+
+/*----------- Overheadings ---------------*/
+// These classes are for text bigger than h1
+.giga {
+    @include rem(font-size, 6.0rem);
+}
+.mega {
+    @include rem(font-size, 4.8rem);
+}
+.kilo {
+    @include rem(font-size, 3.0rem);
+}
+
+.page-title{
+    color         : $color__bodyCopy;
+    font-family   : $font-secondary;
+    margin-bottom : $space;
+}

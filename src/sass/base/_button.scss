@@ -1,0 +1,65 @@
+/*----------- Buttons ---------------*/
+%btn{
+    font-family      : $font-secondary;
+    color            : $white;
+    padding          : $pad-half $pad-and-half;
+    cursor           : pointer;
+    border           : none;
+    border-radius    : 3px;
+    text-align       : center;
+    background-color : $bw-blue;
+    transition: background-color 0.3s;
+    &:hover, &:focus {
+        background-color: darken( $bw-blue, 5%);
+        transition: background-color 0.6s;
+    }
+
+    &.disabled {
+        background-color: $light;
+        color: $grey;
+    }
+}
+
+.btn{
+    @extend %btn;
+}
+
+.btn--primary{
+    background-color: $bw_blue;
+    &:hover, &:focus {
+        background-color: $bw-blue;
+    }
+}
+.btn--secondary{
+    background-color: $bw_blue_alt;
+    &:hover, &:focus {
+        background-color: darken( $bw_blue_alt, 5%);
+    }
+}
+.btn--third{
+    background-color: $bw_orange;
+    &:hover, &:focus {
+        background-color: darken( $bw_orange, 5%);
+    }
+}
+
+.btn--small {
+    padding: $pad-quarter;
+}
+.btn--large {
+    padding: $pad $pad-double;
+    text-transform: uppercase;
+    @include rem(font-size, 1.6rem);
+    font-weight: normal;
+}
+
+a.btn{
+    color: $white;
+    border-color: transparent;
+    display: inline-block;
+    &:hover,
+    &:focus{
+        background-color: darken( $bw-blue, 5%);
+        transition: background-color 0.6s;
+    }
+}

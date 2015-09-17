@@ -1,0 +1,89 @@
+// ------------------------------------
+// $VARIABLES
+// ------------------------------------
+
+// Base spacing - measures
+$max-width                 : 1170px;
+
+//For use with margin
+// 1em = 14px as setup bellow, see font-size
+$space                     : 1em;
+$space-and-half            : $space*1.5;
+$space-double              : $space*2;
+$space-quad                : $space*4;
+$space-half                : $space/2;
+$space-quarter             : $space/4;
+//For use with padding
+$pad                       : 1em;
+$pad-and-half              : $pad*1.5;
+$pad-double                : $pad*2;
+$pad-half                  : $pad/2;
+$pad-quarter               : $pad/4;
+
+
+// Shades
+$black                     : #000;
+$dark                      : #343434;
+$grey                      : #808080;
+$grey-light                : #CCC;
+$grey-lighter              : #DDD;
+$light                     : #EFEFEF;
+$white                     : #FFF;
+
+// Colors
+$bw_blue                   : #002D62;
+$bw_blue_alt               : #00ADEF;
+$bw_red                    : #D21245;
+$bw_green                  : #8DC63F;
+$bw_orange                 : #F47B20;
+
+$color__bodyCopy           : #343434; //#555
+$color__bodyCopyLight      : #CCC;
+$color__bodyHeader         : $dark;
+
+$color__error              : $bw_red;
+$color__valid              : $bw_green;
+$color__warning            : $bw_orange;
+$color__information        : #000DB5;
+
+// Setings with colors above
+$font-color                : $color__bodyCopy;
+
+$link-color                : $bw_blue;
+$link-hover-color          : darken($bw_blue, 10%);
+$link-visited-color        : darken($bw_blue, 10%);
+
+$selected-font-color       : #FFF;
+$selected-background-color : $bw_blue;
+
+
+//Typography
+$font                      : "opensans", "Arial", sans-serif;
+$font-secondary            : "blackwell", Georgia, Times, "Times New Roman", serif;
+$bw-font                   : $font-secondary;
+$font-serif                : $font-secondary;
+
+$bw-font-bold              : "blackwellBold", Georgia, Times, "Times New Roman", serif;
+
+$line-height               : 24px/14px; // = 1.7142857143
+$fsize                     : 14px; // use @include rem(font-size, 1.4rem); for 14px font-sizes...
+
+
+//Breakpoints
+$bp-xsmall                 : 0320px / $fsize * 1em; // 22.857142857em
+$bp-small                  : 0480px / $fsize * 1em; // 34.285714286em
+$bp-tab                    : 0700px / $fsize * 1em; // 50em
+$bp-med                    : 0850px / $fsize * 1em; // 60.714285714em
+$bp-large                  : 1024px / $fsize * 1em; // 73.142857143em
+
+
+// Changing Susy default global settings
+$susy: (
+    columns           : 12,
+    container         : $max-width,
+    gutters           : 0.5, // 60px columns, 30px gutters
+    global-box-sizing : border-box,
+    debug             : (
+        // image: show-columns
+    )
+);

@@ -1,0 +1,26 @@
+{
+  "name"            : "code-standard-blackwell",
+  "version"         : "1.0.0",
+  "authors"         : [
+    "Yann Le Corre"
+  ],
+  "ignore"          : [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+    ],
+  "dependencies"    : {
+    "susy"            : "^2.2.3",
+    "breakpoint-sass" : "^2.5.0"
+  },
+  "description"     : "Blackwell coding standards front-end development.",
+  "main"            : "main",
+  "moduleType"      : [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ]
+}

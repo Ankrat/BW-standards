@@ -1,0 +1,25 @@
+/*----------- Text-Related Elements ---------------*/
+p {
+	margin: 0;
+    @include rem(margin-bottom, 1rem);
+}
+
+/* Blockquote */
+blockquote {
+    font-style    : italic;
+    color         : $color__bodyCopy;
+    margin-bottom : $space;
+}
+
+/* Horizontal Rule */
+hr {
+    border     : 0;
+    height     : 2px;
+    background : ligthen($grey, 20%);
+    margin     : $space-double 0;
+}
+
+abbr {
+    border-bottom : 1px dotted $grey;
+    cursor        : help;
+}

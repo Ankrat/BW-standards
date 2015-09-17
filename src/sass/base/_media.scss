@@ -1,0 +1,21 @@
+/*----------- Media Elements ---------------*/
+
+img, video, object {
+	max-width: 100%;
+	height: auto;
+    vertical-align: middle;
+}
+
+iframe {
+	margin-bottom: $space;
+}
+
+figure {
+    margin: 0 0 $space-half 0;
+	img {
+		margin-bottom: $space-half;
+	}
+}
+figcaption {
+	font-style: italic;
+}

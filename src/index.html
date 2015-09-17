@@ -1,0 +1,48 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="{{ lang }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang }}" class="no-js"> <!--<![endif]-->
+<head>
+
+    @@include("content/global/head-meta.htm")
+
+    <title>Coding Standards | {BW}</title>
+    <meta name="description" content="{{ meta.description }}">
+    <meta name="keywords" content="{{ meta.keywords }}">
+
+</head>
+    <body>
+
+        @@include("content/global/header-page.htm")
+
+        <div class="container clearfix">
+
+            <main role="document" class="content">
+                <article>
+
+                    <section>@@include("content/general.htm")</section>
+                    <section>@@include("content/html.htm")</section>
+                    <section>@@include("content/css.htm")</section>
+                    <section>@@include("content/javascript.htm")</section>
+                    <section>@@include("content/responsive.htm")</section>
+                    <!-- <section>@@include("content/appendix.htm")</section> -->
+
+                </article>
+            </main>
+
+            <nav class="nav-toc fixedsticky" role="navigation">
+                <!-- Generate side nav via js  -->
+                <ul id="toc" style="display:none"></ul>
+                <noscript><p><a href="http://enable-javascript.com">Please enable JavaScript</a>.</p></noscript>
+            </nav>
+
+        </div>
+
+
+        @@include("content/global/footer-page.htm")
+
+        @@include("content/global/scripts.htm")
+
+    </body>
+</html>

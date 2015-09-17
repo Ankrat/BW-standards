@@ -1,0 +1,47 @@
+/*----------- Main ---------------*/
+html {
+  font-size: 62.5%; /* => default browser font-size =16px, decrease to a 10 base font for rem*/
+}
+
+body {
+    @include rem(font-size, 1.4rem); // 14px
+    color       : $font-color;
+    font-family : $font;
+    line-height : $line-height;
+    margin      : 0;
+    padding     : 0;
+}
+
+.container{
+    @include container(12);
+    margin    : 0 auto;
+}
+
+.content {
+    @include span(9 of 12);
+}
+
+.nav-toc {
+    @include span(3 last of 12);
+
+    .h2{
+        @include rem(font-size, 1.4rem);
+    }
+    .h3{
+        @include rem(font-size, 1.2rem);
+        @include rem(margin-left, 1rem);
+    }
+    ul{
+        padding: 0;
+        list-style: none;
+    }
+}
+
+.box, .box_notice {
+    background: #f0f0f0;
+    margin: 0 0 20px;
+    padding: 20px 20px 10px;
+    box-shadow: #ccc 0 1px 3px;
+}
+
+.fixedsticky { top: 0; right: 0; }

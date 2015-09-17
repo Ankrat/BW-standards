@@ -1,0 +1,479 @@
+
+    <h2>CSS</h2>
+
+    <p>Cascading Style Sheets (CSS) is where the visual presentation and design rules for a website belong. Well-written CSS makes good use of its cascading nature - general styles are applied first, and those styles are overridden for more specific instances as necessary.</p>
+
+    <h3>Goals for Effective CSS</h3>
+
+    <p>CSS is an unusual language which can easily lead to code bloat, inconsistencies in design or clashing code techniques. It is easy to end up with CSS code that is so fragile it can cause site-wide regressions with small changes.</p>
+
+    <p>CSS should:</p>
+
+    <ul>
+        <li>Be easy to maintain.</li>
+        <li>Follow clear enough patterns to understand.</li>
+        <li>Offer a clear place for new styles going forwards.</li>
+        <li>Not be a drag on page loading performance. <strong>TODO: define how?</strong></li>
+        <li>Not include unused style rules.</li>
+        <li>Address different devices, browser versions, and do as much as it can with as little code as possible.</li>
+    </ul>
+
+    <p>When setting up the CSS for a site, always consider:</p>
+
+    <ul>
+        <li>What the default styles for HTML elements are going to be.</li>
+        <li>Which styles are global styles versus specific one-off use-cases.</li>
+        <li>Distinctions between code for layout and for content.</li>
+        <li>How the code will evolve and grow.</li>
+        <li>Potential impact of bug fixes on the overall site.</li>
+        <li>Use of images as CSS background images vs. in-line HTML (content).</li>
+    </ul>
+
+    <h3>Getting Started with CSS</h3>
+
+    <p>Planning for a CSS build isn't that different than any other software requirements for Web development. A solid foundation starting point is critical.</p>
+
+    <p>Before coding, you should always:</p>
+
+    <ul>
+        <li>Review the design.</li>
+        <li>Plan around technical constraints.</li>
+        <li>Identify how content will be managed.</li>
+        <li>Be certain who will be able to modify the design directly via code.</li>
+    </ul>
+
+    <p>Try to segment code in logical ways:</p>
+
+    <ul>
+        <li>Separate page grids and containers from the content.</li>
+        <li>Create baseline components which may be extended by other styles.</li>
+    </ul>
+
+    <p>Baseline components should rarely be modified directly.</p>
+
+    <p>More specifically, you may have:</p>
+
+    <ul>
+        <li>Core brand styles.</li>
+        <li>Basic typography or default HTML rules.</li>
+        <li>Site-wide styles.</li>
+        <li>Distinct sections of the site.</li>
+        <li>Micro-sites and landing pages.</li>
+        <li>Components, widgets, or re-usable modules.</li>
+    </ul>
+
+    <h4>Tools</h4>
+
+    <p>Sometimes a third party library helpful —&nbsp;but please be certain to not include extra code for no reason other than personal enjoyment. Libraries or tools should be picked based on the advantages they provide.</p>
+
+    <p>Common types CSS-related tools might include:</p>
+
+    <ul>
+        <li>File concatenation</li>
+        <li>Preprocessors</li>
+        <li>Minifiers</li>
+        <li>Post processors</li>
+    </ul>
+
+    <p>These should be considered in the context of the rest of the site construction, back-end, and continuous integration processes. Discuss the options with the technical lead on the project.</p>
+
+    <p>Be careful as these tools can also introduce unnecessary complexity unless used wisely.</p>
+
+    <h4>Frameworks</h4>
+
+    <p>Pre-built UI components or CSS frameworks can be beneficial, however just like any third party code please choose wisely and based on benefit of features and flexibility. Locking development into a library that unintentionally imposes limits is not good.</p>
+
+    <p>Some examples of third party frameworks might include:</p>
+
+    <ul>
+        <li>UI component or widget libraries (e.g. Foundation, Bootstrap, jQuery UI)</li>
+        <li>Grid Systems</li>
+        <li>Typography adjustments</li>
+        <li>Normalizing code</li>
+    </ul>
+
+    <aside class="box">
+        <p>
+        <strong>Note:</strong><br>External libraries should always be assessed for the pros/cons and potential benefits, vs. the barrier to entry and level of effort involved in their usage. </p> <p>For instance, a grid system may not match the grids in the design, and it may not be adjustable enough for a given design.</p>
+    </aside>
+
+    <h4>Establishing Conventions and Development Strategies</h4>
+
+    <p>Like other aspects of the code on a site, consistency is key. Areas of critical consistency include:</p>
+
+    <ul>
+        <li>Code formatting</li>
+        <li>Naming conventions</li>
+        <li>File and folder structure</li>
+        <li>Examples or sample code</li>
+        <li>How page components might be broken down or re-used</li>
+    </ul>
+
+    <p>On a large site never develop using a single CSS style sheet, though a single file served for a page is best. To this end we often recommend the use of CSS preprocessors to break style sheets into smaller, better organized files, or the use of a build process to combine files for serving via HTTP.</p>
+
+    <aside class="box">
+        <p>
+        <strong>Note:</strong><br> It is a great idea to approach front-end development like a set of <a href="http://patternlab.io/">reusable components</a> are being created. This matches how they are designed, how they must adapt to responsive layouts, and how they will be implemented inside content management or other server-side frameworks.</p>
+        <p><a href="http://getbootstrap.com/">Bootstrap</a> is a commonly cited framework that uses an approach similar to this.</p>
+    </aside>
+
+    <h5>Living Style Guides and Reference Implementations</h5>
+
+    <p>One technique to consider is maintaining static HTML style reference implementations well into integration with server-side / back-end systems. These could be a series of templates or widgets that use the live styles being built. This helps reduce regressions that can happen across the board as the code for the site evolves. Continue to test these reference implementations as they will be the "source of record" for the styles created on the site. They also allow you to more easily distinguish the front-end bugs from the bugs potentially introduced by integration with a complex back-end.</p>
+
+    <p>These reference implementations can serve as a <em>living style guide</em> and broken components are easily spotted in testing over time.</p>
+
+    <p>Defining a solid style guide to be applied to tag names can significantly reduce the size of the CSS if that style guide is adhered to by both the design and development teams. It is recommended that a style guide is agreed upon at the beginning of a project, defined in HTML and then iterated on by both the design and development teams.</p>
+
+    <h3>CSS Best Practices</h3>
+
+    <p>What follows are some basic concepts for standardization of CSS code.</p>
+
+    <h4>Inclusion</h4>
+
+    <p>Use the <code><link></code> tag to include all your style sheets in the <code><head></code> of the document. For optimal page performance, concatenate your CSS into as few files as possible and do not use the <code>@import</code> command to include other style sheets, as this will fire an additional HTTP request and block page rendering until its completion.</p>
+
+    <p><pre class="language-markup">
+<code>
+&lt;link rel="stylesheet" type="text/css" href="main.css"&gt;
+</code>
+</pre></p>
+
+    <h4>Formatting CSS</h4>
+
+    <p>Basic rules for formatting CSS files:</p>
+
+    <ul>
+        <li>Use a new line for every selector and every declaration.</li>
+        <li>Use a single space before the opening brace in a set of rules.</li>
+        <li>Use lowercase for elements and shorthand hex values, e.g., <code>#aaa</code>.</li>
+        <li>Hyphenate class selector names; avoid underscores and camelCase <strong>TODO BEM article???</strong></li>
+        <li>Quote attribute values in selectors</li>
+        <li>Use one level of indentation for each declaration.</li>
+        <li>The closing brace of declaration goes in the same column as the first character of the set of rules.</li>
+        <li>Use a single blank line between sets of rules.</li>
+    </ul>
+
+    <p>Inside sets of rules or style declarations:</p>
+
+    <ul>
+        <li>Add a single space between the property and value, for example:<br>
+            <code>prop: value;</code> and <em>not</em> <code>prop:value;</code>.</li>
+        <li>Use double quotes for quoted values</li>
+        <li>Always include a semi-colon at the end of the last declaration.</li>
+        <li>Use shorthand if you can, like:<br>
+            <code>padding: 15px 0;</code> and <em>not</em> <code>padding: 15px 0px 15px 0px;</code></li>
+        <li>When allowed, use <code>0</code> without units.</li>
+    </ul>
+
+    <p>Putting each selector on its own line and each property on its own line is great for readability and so version control systems can clearly show which parts have changed in a diff.</p>
+
+    <p>The attributes within a selector can be alphabetized for easy scanning and so that compression algorithms like gzip have a greater chance of finding repeatable patterns.</p>
+
+    <p>Some examples:</p>
+
+    <p><!-- do we want more examples to cover most of the notes above? --></p>
+
+    <p><pre class="language-css"><code> .content { margin-left: -2%; }</code></pre>
+    </p>
+
+    <p>.twitter-popular, .twitter-favorites, .twitter-feed { float: left; padding-left: 2%; width: 33.33%; padding: 15px 0; }
+        <code></code>`</p>
+
+    <p><strong>Do not indent child styles</strong> underneath their parent styles; this is important for a number of reasons:</p>
+
+    <ul>
+        <li>We usually recommend indenting media queries, so this can cause confusion.</li>
+        <li>Some CSS preprocessors heavily use indentation.</li>
+        <li>Various levels of indentation hinders maintainability.</li>
+        <li>HTML and CSS structure can change frequently over the course of a project, quickly rendering obsolete the parent-child relationship the indentation used to represent.</li>
+    </ul>
+
+    <h4>Specificity</h4>
+
+    <p>Use the minimum specificity required to achieve the desired style. It can be difficult to quickly read and locate styles or even bugs with heavily nested styles in the CSS.</p>
+
+    <p>The ID is the most specific selector, since it can only match one element, and the class is a close second. Use those whenever possible rather than HTML tag names.</p>
+
+    <p><pre class="language-css">
+<code>
+<p>/*<em> BAD </em>*/</p>
+<p>button#back-button { ... }</p>
+<p>.popular ul li a { ... }</p>
+<p>.popular > ul > li > a { ... }</p>
+<br>
+<p>/*<em> GOOD </em>*/</p>
+<p>.back-button { ... }</p>
+<p>.popular-link { ... }</p>
+<p>.unpopular-link { ... }</p>
+</code>
+</pre>
+
+    <p>As a rule, CSS is most maintainable with the simplest selectors possible. Try applying a class to the element you want to target instead.</p>
+
+    <aside class="box">
+        <p>
+        <strong>Note:</strong><br> While performance of CSS selectors has been a debated topic, browsers perform quite well on most types of selectors. That said, specificity reduced to the most simple name to get the desired results is the best idea in most cases <strong>for readability</strong> and <strong>maintainability</strong>.</p>
+    </aside>
+
+    <h5>Do Not Use !important</h5>
+
+    <p>Avoid using the <code>!important</code> keyword. Treat it like the nuclear option, only to be used in the most extreme of cases. This fundamentally destroys the specificity feature and can even break accessibility for some users.</p>
+
+    <p>There is usually another way to achieve the same goal without causing headaches for developers in the future who are either trying to debug a styling issue, or trying to use normal specificity to override a style for a particular element only to find that they can't.</p>
+
+    <h4>ID Selectors</h4>
+
+    <p>As noted above, use the lowest level of specificity necessary to get the desired results. This means the use of the ID selector should be minimized. Often creating a new class is preferable to using inheritance or additional specificity to target an element or elements.</p>
+
+    <p>ID selectors, if used, should be used mainly as access points for JavaScript or if a very particular use case surfaces. Styles and classes can be applied via the same element with a className.</p>
+
+    <h4>Vendor Prefixes</h4>
+
+    <p><strong>TODO autoprefixr???</strong> When using vendor prefixed features, put the standardized rule at the end to ensure browsers optimize and use the standard if they recognize it.</p>
+
+    <p>For example:</p>
+
+    <p><pre class="language-css">
+<code>
+.thing {
+    -webkit-transition: all 100ms;
+    transition: all 100ms;
+}
+</code>
+</pre></p>
+
+    <h4>Inline Styling</h4>
+
+    <p>Do not hard code style information into your HTML markup directly, either with the <code>style</code> attribute that accepts CSS or with deprecated attributes such as <code>align</code>, <code>border</code>, or <code>width</code>. These are difficult to maintain and make it harder to track down what is causing an element to appear as it does.</p>
+
+    <h5>Performance Caveats</h5>
+
+    <p>In some cases for performance reasons it may be good practice to in-line critical styles in a <code>style</code> block in the document's <code>head</code>. This delivers these styles to the browser in the fastest method possible by preventing the need for an additional HTTP request. Fetching linked style sheets are a blocking operation on the rendering of a Web page in a browser in most cases. An enormous CSS file can mean a highly reduced time to first rendering because a browser may pause during loading of the page to download CSS which may not even be used on the first page.</p>
+
+    <p>With the above in mind it may be desirable to include the rules required to render the top portions of a page (i.e. "Above the fold") in advance of styles loaded after the rendering begins. Critical styles can be identified either manually or through the use of a tool. Non critical styles can then be asynchronously loaded, increasing the perceived page load speed.</p>
+
+    <h4>Box Model</h4>
+
+    <p>To simplify CSS authoring, we set the <code>box-sizing</code> attribute to <code>border-box</code> for all page elements. This enables us to use round numbers for width like 50% and then apply a padding or border to that same element without needing to</p>
+
+    <ol>
+        <li>adjust the width accordingly using calc (since borders use pixels rather than percents) or</li>
+        <li>create an element inside it to take the padding and border. This is the only case where we use the inefficient universal selector (<code>*</code>).</li>
+    </ol>
+
+    <p>Example:</p>
+
+    <p><pre class="language-css">
+<code>
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+</code>
+</pre></p>
+
+    <h4>Coding Patterns</h4>
+
+    <p>There are a number of popular design patterns for naming conventions on selectors, groupings or extensions of styles in CSS files. Sometimes these are of value and may be used on projects as long as the developers are on board and they are used consistently by the team.</p>
+
+    <aside class="box">
+        <p>Examples of pattern systems include BEM, SMACSS, Object Oriented CSS, Atomic design, and others.</p>
+    </aside>
+
+    <p><!-- links? --></p>
+
+    <p>The downsides to some of these systems are:</p>
+
+    <ul>
+        <li>Often rely on less obvious rules that may be difficult to follow.</li>
+        <li>They may use syntax that may be objectionable to some developers.</li>
+        <li>Some developers may find the syntax difficult to read.</li>
+    </ul>
+
+    <p>For these reasons it is often best to go with the most simple, basic set of conventions possible, based on obvious patterns.</p>
+
+    <h4>A Simple CSS Code Pattern</h4>
+
+    <p><!-- Isobar Component Pattern This entire section might be best left out, I don't know if it goes too far for the document? From there down to "Utilities" -->
+    </p>
+
+    <p>The following sections describe one simple approach, and as long as the types are defined on a project and the patterns are followed, then a clear meaning can be interpreted fairly quickly and easily reading through the CSS, HTML, and JavaScript.</p>
+
+    <p>Every site will have distinct requirements but some examples of things that can be standardized on a site build include:</p>
+
+    <ul>
+        <li>Global Defaults</li>
+        <li>Page Level Rules (grids, site template types, and so on)</li>
+        <li>Components</li>
+        <li>Modifiers</li>
+        <li>State</li>
+        <li>JavaScript-only Rules</li>
+        <li>Utilities</li>
+    </ul>
+
+    <p>The following sections describe how some might work.</p>
+
+    <h5>Global Defaults</h5>
+
+    <p>For the purposes of discussion we could refer to the global defaults as the baseline HTML elements and their associated styles. Frequently you may wish to use a third party library which normalizes CSS behavior across browsers. Either way, it makes sense to keep these files in their own files.</p>
+
+    <h5>Page Level Rules</h5>
+
+    <p><!-- need more content here --></p>
+
+    <p>Any site is liable to have a standard baseline set of grids and types of pages. These grids can be collected into their own distinct set of component files —&nbsp;using a broad definition of a global "thing" as a component.</p>
+
+    <h5>Components</h5>
+
+    <p>Components are a high level concept for organizing CSS files and rules. A component simply means a grouped set of rules pertaining to an object or set of related objects on a page.</p>
+
+    <p>Additionally, encapsulating these components into distinct files is a great option. Within this file, using a naming convention is a tremendous help here for code maintainability and readability.</p>
+
+    <p>Group styles under a simple name-space using a <strong>prefix-suffix-modifier</strong> type pattern such as:</p>
+
+    <p><pre class="language-css">
+<code><p>/*<em> core component </em>*/</p>
+<p>.component { ... }</p>
+<br>
+<p>/*<em> component elements </em>*/</p>
+<p>.component-header { ... }</p>
+<p>.component-content { ... }</p>
+<br>
+<p>/*<em> component descendant </em>*/</p>
+<p>.component-content-group { ... }</p>
+<br>
+<p>/*<em> component descendant element </em>*/</p>
+<p>.component-content-group-header { ... }</p>
+<p>.component-content-group-imgs { ... }</p>
+</code></pre></p>
+
+    <p>This type of pattern is easy to read, extend, and follow in the absence of something more sophisticated.</p>
+
+    <p>Additionally, generally components will be the only CSS class with distinct names that do not have prefixes before the core, root, or base name of the component (e.g. above we are using <code>component</code>).</p>
+
+    <p>Just to get developers thinking, these might be things like:</p>
+
+    <ul>
+        <li>navbar</li>
+        <li>footer</li>
+        <li>page-info</li>
+        <li>article-date</li>
+        <li>lead</li>
+        <li>widgetfoo</li>
+        <li>byline</li>
+    </ul>
+
+    <h5>Modifiers</h5>
+
+    <p>If you need to extend an existing component then create distinct modifier classes with the prefix <code>mod-</code> to easily indicate that it is a modifier and not a complete style. Using the <code>mod</code> name prefix prevents confusing the class with a full class.</p>
+
+    <p><pre class="language-css">
+<code>
+.mod-modifier-a { ... }
+.mod-modifier-b { ... }
+</code>
+</pre></p>
+
+    <p>Then, when used in the HTML, the class stands out:</p>
+
+    <p><pre class="language-markup">
+<code>
+&lt;div class="component-content mod-modifier-a"&gt;...&lt;/div&gt;
+</code>
+</pre></p>
+
+    <p>This is a strong technique because the modifier classes can stand on their own in the CSS. Further, they may also be altered via more complex rules:</p>
+
+    <p><pre class="language-css">
+<code>
+.component-header.mod-modifier-a { ... }
+</code>
+</pre></p>
+
+    <p>This is simplistic and easy to follow, understand, and expand upon.</p>
+
+    <h5>State</h5>
+
+    <p>A <em>state</em> for an element or component is presentation information for a given component. This may be a dynamic state set by JavaScript or a user interaction, but not always. It could also be a preset from the server or the results after a transaction. State modifiers are a great way for a distinct class to be provided to engineers unfamiliar with the design to be provided hooks for various things. This is slightly different than JS specific classes, however.</p>
+
+    <p>State rules will use the <code>is-</code> prefix.</p>
+
+    <p><pre class="language-css">
+<code>
+.component-group.is-full { ... }
+.component-group.is-expired { ... }
+</code>
+</pre></p>
+
+    <p>Treating components' <em>state</em> as a modifier that is boolean (i.e. <code>true</code> or <code>false</code>) also:</p>
+
+    <ul>
+        <li>Semantically helps provide information about the content.</li>
+        <li>Separates the code for state from default presentation.</li>
+        <li>Removes the need to update corresponding states or components if the name of either changes.</li>
+    </ul>
+
+    <p>This last point is important from a maintenance perspective.</p>
+
+    <p>It's best to try to restrict these state indicators as being restricted to a specific component.</p>
+
+    <h5>JavaScript (JS) Prefix</h5>
+
+    <p>The usage of a <code>js-</code> prefix is present in the markup but should never really appear in the CSS file itself. If the styles are being set, then use modifiers or state type classes.</p>
+
+    <p><pre class="language-markup">
+<code>
+&lt;button class="component-button js-execute"&gt;...&lt;/button&gt;
+</code>
+</pre></p>
+
+    <p>The <code>js-execute</code> rule should not appear in the CSS file, but only in JS files they are tied to behavior. These are events, verbs, or action related, and are access points for JavaScript not a toggle or state changer. It's best to think of these classes as closer to and ID attribute in the HTML.</p>
+
+    <h5>Utilities</h5>
+
+    <p>A utility is a type of component modifier that is specifically designed to be used on more than one component type. If it was restricted to a single component, it would simply be a modifier.</p>
+
+    <p>Utilities will use the prefix of <code>u-</code> and should serve only the modifier purpose intended without side effects when applied to any component, or component descendant.</p>
+
+    <p><pre class="language-css">
+<code>
+<p>.u-warning {}</p>
+<p>.u-scroll-infobox {</p>
+    <p>overflow-x: scroll;</p>
+    <p>width     : auto; </p>
+<p>}</p>
+</code>
+</pre></p>
+
+    <h4>The Mobile Web, Media Queries, Responsive Design</h4>
+
+    <p>With the mobile Web taking off Media Queries are mandatory in CSS going forwards.</p>
+
+    <p>We discuss media queries in the <a href="#responsive_responsive_web_design">Mobile / Responsive</a> section of this document.</p>
+
+    <h3>CSS Deliverables</h3>
+
+    <p>Please be aware of potential conflicts between the original development environment for CSS and an ultimate deployment to production systems, if continuous integration will allow the continued use of CSS preprocessors, or if there should a cross-platform development strategy.</p>
+
+    <p>Delivered CSS should be concatenated, minified, tested against browser bugs (e.g. MSIE selector count bugs) and extra files should be removed.</p>
+
+    <p>File naming conventions should be consistent and language or use-case specific files should be clear and not be easily confused with the global style CSS.</p>
+
+    <h3>Next Steps &amp; CSS Resources</h3>
+
+    <p>This is just the tip of the iceberg where CSS is concerned.</p>
+
+    <ul>
+        <li>Browser Compatibility</li>
+        <li>Media Queries</li>
+        <li>Accessibility and CSS</li>
+        <li>CSS pre-processors usage</li>
+        <li>Internet Explorer, or browser-specific bugs</li>
+        <li>Usage of CSS3 transitions, transforms, and more</li>
+        <li>Vendor prefixes</li>
+        <li>Color Management</li>
+    </ul>
+
+    <p>For current links and references, please see our Wiki on Github.</p>

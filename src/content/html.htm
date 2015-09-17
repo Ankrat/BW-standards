@@ -1,0 +1,253 @@
+<h2>HTML</h2>
+
+<p>HTML markup defines the content of a document and gives it a rudimentary structure such as section dividers, headers, paragraphs, lists, menus, and forms.</p>
+
+<h3>Goals for Markup</h3>
+
+<p>Please follow conventions established for a given project so all team members can have the same expectations around document structure and markup.</p>
+
+<p>Structural consistency is critical when talking about the types of pages being used on a site or in a Web app. The markup structure provides all the necessary hooks for scripting and behavior, so it's important that the appropriate hooks are in place.</p>
+
+<p>A clear, clean, and concise HTML structure is also necessary for semantics, flexibility, and a <strong>reliable deployment environment</strong>. Do <strong>not</strong> deviate from established templates or patterns without architect approval.</p>
+
+<p>Which markup is used does matter:</p>
+
+<ul>
+    <li>Use the most <em>meaningful</em> yet <em>minimal</em> markup required to present the styles and interaction required</li>
+    <li>Application-centric deliverables often have different types of requirements; please code accordingly</li>
+    <li><strong>Maintain a clear separation of concerns, avoid in-line styles and in-line JavaScript whenever possible</strong></li>
+    <li>Have reference implementations so that each team member knows what sorts of structures are appropriate, as well as where to add new code.</li>
+    <li>Build pages as a <strong>library of components</strong>, in such a way that blocks of code can be broken up and reused when implemented.</li>
+    <li>Be sure front-end code is compatible with destination environments and delivery platforms.</li>
+</ul>
+
+<p>The flexible nature of HTML markup and how loosely browsers interpret markup sometimes lends itself to inconsistencies not always being discovered immediately. This belies the care necessary in crafting a document's structure and in following established patterns.</p>
+
+<h3>Getting Started on Markup</h3>
+
+<p>When crafting the HTML for a website, environment or technical constraints may impact the type of markup that can be used. Please discuss the final delivery environment in depth with technical leads and clients so that pages are not structured or styled in some way that is not effective for the project solution.</p>
+
+<p>Discuss types of:</p>
+
+<ul>
+    <li>Templates and types of pages.</li>
+    <li>Which sections of pages (i.e. components) are reused or managed by software vs. by hand.</li>
+    <li>Frameworks, CSS grid systems (custom or otherwise).</li>
+    <li>Server-Side delivery platforms.</li>
+</ul>
+
+<p><em>Note that it is vital to take into account how the site will ultimately be maintained and who will be doing that work.</em></p>
+
+<h3>HTML Markup Best Practices</h3>
+
+<p>As noted these guidelines are flexible for projects as long as consensus or need determines a particular path, consistency is what matters most.</p>
+
+<h4>Semantic Markup</h4>
+
+<p>HTML provides a number of <a href="http://www.bbc.co.uk/guidelines/futuremedia/technical/semantic_markup.shtml">semantic constructs</a> that allow automated tools like search engines and screen readers to make sense of the document and to understand relationships between pieces of content. Use <em>semantic</em> markup whenever possible — that is to say use elements with specific meanings for specific purposes to convey the spirit of the markup.</p>
+
+<p>A well-written HTML document will make appropriate use of these semantic elements and leave all responsibility for controlling the presentation of the document to the CSS style sheet.</p>
+
+<h4>HTML Standards and Browser Support</h4>
+
+<p>All markup will be written using the latest HTML5 markup specifications from the W3C, as implemented by browsers and devices that meet project requirements. When creating markup be sure that the target environments support the techniques being implemented, or that there is a fall-back plan.</p>
+
+<p>Please use a common <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills">HTML5 polyfill</a> or HTML5 Shiv to enable styling and recognition of HTML5 elements in older devices' browsers.</p>
+
+<aside class="box">
+    <p>
+    <strong>Learn more:</strong><br> You will frequently hear the term "polyfill", "shim", or "shiv" passed around where backwards compatibility for HTML5 and older browsers is concerned. <a href="https://remysharp.com/2010/10/08/what-is-a-polyfill">What is a Polyfill</a>?</p>
+    <p>Please note that a tool like <a href="http://modernizr.com">Modernizr</a> will include a HTML5 Shiv, but Modernizr does much more than this — so unless you need the feature detection features it provides, it may be better to simply include the the <a href="https://github.com/afarkas/html5shiv">HTML5shiv</a>.</p>
+</aside>
+
+<h4>Doctype</h4>
+
+<p>Always include a proper doctype to trigger standards mode. Omitting the doctype <a href="https://developer.mozilla.org/en-US/docs/Quirks_Mode_and_Standards_Mode">triggers quirks mode</a> and should always be avoided. The HTML5 doctype is simple and easy to remember.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;!doctype html&gt;
+</code>
+</pre></p>
+
+<h4>Character Encoding</h4>
+
+<p>All markup should be delivered as UTF-8, since it has the best support for internationalization. The character encoding should be designated in both the HTTP header and the head of the document via a meta tag. If the server happens to omit the HTTP header, browsers can take a guess at the character encoding and begins parsing and rendering the markup in a particular way. If there are inconsistencies, the browser will re-parse and re-render, throwing away all that work and starting over if it encounters the meta tag and its guess was incorrect. As a best practice, we always put the meta tag as early in the <code>&lt;head&gt;</code> tag as early as possible —&nbsp;however server-settings are ideal.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;meta charset="UTF-8"&gt;
+</code>
+</pre></p>
+
+<h4>Optional and Self-closing Tags</h4>
+
+<p>While current standards designate certain closing elements and even document level elements as optional, use all open and closing elements nested in the correct ways to ensure maximum compatibility and clarity of document structure.</p>
+
+<p>Generally speaking, self-closing XML (i.e. XHTML, XML) style tags are not necessary.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;!-- closing "/" is not necessary --&gt;
+<p>&lt;img src="/logo.png" alt="Blackwell's"&gt;</p>
+
+<p>&lt;!-- include closing tags, however --&gt; </p>
+<p>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit:&lt;/p&gt;</p>
+<p>&lt;ul&gt;</p>
+    <p>&lt;li&gt;Vero sunt veritatis magni sit odit,&lt;/li&gt;</p>
+    <p>&lt;li&gt;voluptatum ratione suscipit.&lt;/li&gt;</p>
+<p>&lt;/ul&gt;</p>
+</code>
+</pre></p>
+
+<p>Unusual markup (or indeed, invalid) can lead to bugs in page rendering, DOM interpretation, or even how styles are applied, so it should be avoided whenever possible.</p>
+
+<h5>Validation</h5>
+
+<p><a href="https://validator.w3.org/">Valid markup</a> is a goal but not a mandate. However, be aware validation can be an excellent starting place while debugging a Web page — especially if the problems are unusual.</p>
+
+<p>If it becomes necessary, please have reasons for invalid markup — otherwise it is just sloppy code.</p>
+
+<h4>Indentation in HTML</h4>
+
+<p>Indent nested elements and tags with single indentation settings, whatever they may be, for each level in the hierarchy of the document.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;div&gt;
+    &lt;p&gt;Lorem ipsumLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,&lt;/li&gt;
+        &lt;li&gt;quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse&lt;/li&gt;
+        &lt;li&gt;cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non&lt;/li&gt;
+        &lt;li&gt;proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code>
+</pre></p>
+
+<h4>HTML5 Elements</h4>
+
+<p>To provide additional semantic value to our documents, make use of HTML5 elements such as <code>&lt;header&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;section&gt;</code> where appropriate. However, in cases where the HTML needs to be as backwards-compatible as possible, do not apply IDs or classes to them, since older browsers do not understand these elements by default and will not apply styling to them.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;header&gt;
+    &lt;div class="site-header"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/header&gt;
+</code>
+</pre></p>
+
+<h4>Attribute Values</h4>
+
+<p>Use quotes to surround all attribute values in HTML, despite quotes being optional in HTML5. This maintains consistency between attribute values that contain whitespace and those that don't.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;form class="registration module" action="/register" method="POST"&gt;
+</code>
+</pre></p>
+
+<h4>IDs vs. Classes</h4>
+
+<p>HTML elements can be identified by using the <code>id</code> and <code>class</code> attributes. An ID is a unique identifier for that particular element; no other element on the page should use the same ID.</p>
+
+<p>This uniqueness allows <code>&lt;label&gt;</code> elements to associate themselves with a particular input and URLs to jump to a particular scroll position on a page.</p>
+
+<p>Classes are not unique. The same class can be used on multiple elements within a page, and a single element can have more than one class, in a space delimited list.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;ul id="categories"&gt;
+    &lt;li class="category"&gt;Jackets&lt;/li&gt;
+    &lt;li class="category specials"&gt;Accessories&lt;/li&gt;
+    &lt;li class="category"&gt;Shoes&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</pre></p>
+    <p><strong>TODO, define and explain BEM methodology or link to CSS part</strong></p>
+    <p>When coming up with names for an ID or class, we use semantic names like &amp;quot;secondary-nav&amp;quot; or &amp;quot;primary-button&amp;quot; that describe what the element is, rather than names like &amp;quot;left-nav&amp;quot; or &amp;quot;blue-button&amp;quot; that describe what the element looks like, which can change over time. We also use <em>lowercase names with hyphens</em> separating words as opposed to camelCase or underscores.</p>
+
+<h4>Anchors &amp; Links</h4>
+
+<p>All links should point to absolute or relative URLs with user-readable content. Do not link to XML or JSON resources that are designed to be Ajaxed by JavaScript instead of navigated to directly, and do not put JavaScript in an anchor's <code>href</code> attribute like <code>javascript:loadPage(2);</code>. This allows search engines to index the content, allows the user to open the links in a new tab or window, and means the links will still work when JavaScript is broken, disabled, or not supported. This will require that the back-end be able to return a full HTML page for each important content state (e.g. sorting a table column).</p>
+
+<h4>Paragraphs</h4>
+
+<p>Avoid using <code>&lt;br&gt;</code> tags to separate paragraphs or lines of text. Use <code>&lt;p&gt;</code> instead with proper opening and closing elements.</p>
+
+<h4>Definition Lists</h4>
+
+<p>Use definition lists to display a single record of name-value pairs, like a contact card.</p>
+
+<h4>Tables</h4>
+
+<p>Tables should not be used for page layout; only use them when you need <strong>to display tabular data</strong>. Tables provide an important semantic association (used mostly by screen readers for the sight-impaired) between row/column headers and their data, so use <code>&lt;table&gt;</code> rather than other elements when displaying multiple records of data.</p>
+
+<p>The <code>&lt;caption&gt;</code> element is the recommended way to describe a table for both sighted and sight-impaired users, though this can also be done less semantically in the normal page text around the table. Use the <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code> elements to denote which row contains column headers so when a user prints the website and the table runs onto another page, browsers can display the <code>&lt;thead&gt;</code> on each page for easier readability. Remember to use the <code>scope</code> attribute on the <code>&lt;th&gt;</code> element to indicate whether the header applies to the row or column.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;table&gt;
+    &lt;caption&gt;First two U.S. presidents&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Name&lt;/th&gt;
+            &lt;th scope="col"&gt;Took office&lt;/th&gt;
+            &lt;th scope="col"&gt;Party&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;George Washington&lt;/td&gt;
+            &lt;td&gt;April 30, 1789&lt;/td&gt;
+            &lt;td&gt;n/a&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;John Adams&lt;/td&gt;
+            &lt;td&gt;March 4, 1797&lt;/td&gt;
+            &lt;td&gt;Federalist&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code>
+</pre></p>
+
+<h4>Forms</h4>
+
+<p>For both semantic and functional reasons, we make full use of the <code>&lt;form&gt;</code> tag for all sections requiring user input. All form <code>action</code> attributes should point to URLs with user-readable content, so they will still work if the form is submitted by the user before JavaScript has loaded on a page, or if JavaScript is broken, disabled, or not supported. This will require that the back-end be able to return a full HTML page for form submission (e.g. registering a new user, editing the quantity in a shopping cart).</p>
+
+<p>Do not nest the HTML <code>form</code> element tag.</p>
+
+<h4>Input Labels</h4>
+
+<p>All input fields should be associated with a <code>&lt;label&gt;</code> element. The <code>for</code> attribute of the <code>&lt;label&gt;</code> element should contain the ID of the corresponding input field. This means the input field will receive focus when a user clicks the label and also enables screen readers for sight-impaired users to read out an appropriate description of the input field.</p>
+
+<p><pre class="language-markup">
+<code>
+&lt;label for="home-address"&gt;Home Address&lt;/label&gt;
+&lt;input id="home-address" type="text"&gt;
+</code>
+</pre></p>
+
+<h3>Markup Deliverables</h3>
+
+<p>Typically HTML deliverables are incorporated into Content Management Systems or application delivery platforms as templates. A plan for incorporation of templates that leverage patterns created during the markup creation phase should be followed and matching types of pages to templates that were created, so that an association between the source markup and the destination markup can be maintained over time.</p>
+
+<h3>Next Steps &amp; HTML5 Resources</h3>
+
+<p><strong>TODO: -&gt; links ...</strong> Considere the following:</p>
+
+<ol>
+    <li>Site maintenance procedures</li>
+    <li>Browser testing strategies</li>
+    <li>How new features will be added</li>
+    <li>Where new features will be added</li>
+    <li>What the file system looks like for static site assets</li>
+    <li>If a CDN is involved</li>
+    <li>Naming conventions and organization of graphics and photography assets</li>
+    <li>If the "back-end implementation" of static HTML templates will require review by front-end team members</li>
+</ol>
