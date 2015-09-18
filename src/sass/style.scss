@@ -14,17 +14,18 @@
 //  * MIXINS.................................Sass mixins
 /**
  * NORMALIZE..............................Set normalize defaults
- * GLOBAL CLASSES.........................Set reset defaults
+ * .......................................Set remove default spacing
+ * GLOBAL CLASSES.........................Set global classes
  * GLOBAL ELEMENTS........................Establish global styles
+ * .....Typo and fonts
  * .....Main
  * .....Headings
  * .....Text-related elements (p, blockquote, lists)
  * .....Defaults
  * .....Breakpoints
- * TYPOGRAPHY------------------------------
- * MEDIA-----------------------------------
- * LAYOUT----------------------------------
- * NAVIGATION------------------------------
+ * LAYOUT..................................Set columns according to grid
+ * PAGE STRUCTURE..........................Set css for generic block page structure
+ * COMPONENTS..............................Set css for modules
  * TOC To Be Continued
  **/
 
@@ -50,6 +51,7 @@
  *   $NORMALIZE
  ************************************/
 @import "generic/normalize";
+@import "generic/starter";
 
 
 /*************************************
@@ -84,12 +86,6 @@
 // @import "objects/selector";
 // @import "objects/main";
 // @import "objects/footer";
-
-
-/*************************************
- *   $TEXT Styles
- ************************************/
-
 
 
 /*************************************

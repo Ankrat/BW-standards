@@ -15,7 +15,8 @@ var gulp         = require('gulp'),
     concat       = require('gulp-concat'),
     cache        = require('gulp-cache'),
     del          = require('del'),
-    reload       = browserSync.reload;
+    reload       = browserSync.reload,
+    inject       = require('gulp-inject');
 
 
 // HTML
@@ -34,6 +35,18 @@ gulp.task('html', function() {
     .pipe(gulp.dest('dist/minified-statics/'));
 });
 
+// styleguide HTML generate
+gulp.task('sg-html', function () {
+  return gulp.src(['src/style-guide/style-guide.html'])
+        .pipe(inject(gulp.src(['src/patternlab/**/*.htm']), {
+          starttag: '<!-- inject:base:{{ext}} -->',
+          transform: function (filePath, file) {
+            // return file contents as string
+            return file.contents.toString('utf8')
+          }
+        }))
+        .pipe(gulp.dest('dist/style-guide'));
+});
 // gulp.task('default', function () {
 //     return gulp.src('intro.md')
 //         .pipe(markdown())
@@ -53,6 +66,14 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist/minified-statics/styles'));
 });
 
+// styleguide Style generate
+gulp.task('sg-styles', function() {
+  return gulp.src(['src/patternlab/**/*.scss'])
+        .pipe(sass({ style: 'expanded', errLogToConsole: true}))
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+        .pipe(rename("style-guide/stylesheet/sg.css"))
+        .pipe(gulp.dest('dist'));
+});
 
 
 // Scripts
@@ -105,7 +126,7 @@ gulp.task('serve', function() {
 
 // Default task
 gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'vendor', 'images', 'html', 'serve', 'watch');
+    gulp.start('styles', 'scripts', 'vendor', 'images', 'html', 'sg-html', 'sg-styles', 'serve', 'watch');
 });
 
 
@@ -114,10 +135,12 @@ gulp.task('default', ['clean'], function() {
 gulp.task('watch', function() {
 
   // Watch .html/.htm files
-  gulp.watch(['src/{,*/}*.{htm,html}'], ['html']);
+  gulp.watch(['src/{,*/}*.{htm,html}', '!src/patternlab/**/*.htm'], ['html']);
+  gulp.watch(['src/patternlab/**/*.htm'], ['sg-html']);
 
   // Watch .scss files
   gulp.watch('src/sass/{,*/}*.scss', ['styles']);
+  gulp.watch('src/patternlab/**/*.scss', ['sg-styles']);
 
   // Watch .js files
   gulp.watch('src/scripts/{,*/}*.js', ['scripts']);

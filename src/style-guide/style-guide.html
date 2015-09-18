@@ -1,0 +1,39 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="{{ lang }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ lang }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ lang }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ lang }}" class="no-js"> <!--<![endif]-->
+<head>
+
+    @@include("../content/global/head-meta.htm")
+
+    <title>Style-guide | {BW}</title>
+    <meta name="description" content="{{ meta.description }}">
+    <meta name="keywords" content="{{ meta.keywords }}">
+
+    <link rel="stylesheet" href="/style-guide/stylesheet/sg.css">
+
+</head>
+    <body>
+
+
+
+        <div class="container clearfix">
+
+            <main role="document" class="content">
+                <!-- inject:base:htm -->
+                <!-- contents of htm partials will be injected here -->
+                <!-- endinject -->
+            </main>
+
+            <nav class="nav-toc fixedsticky" role="navigation">
+                <!-- Generate side nav via js  -->
+                <ul id="toc" style="display:none"></ul>
+                <noscript><p><a href="http://enable-javascript.com">Please enable JavaScript</a>.</p></noscript>
+            </nav>
+
+        </div>
+
+
+    </body>
+</html>
