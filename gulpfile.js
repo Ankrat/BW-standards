@@ -37,9 +37,9 @@ gulp.task('html', function() {
 
 // styleguide HTML generate
 gulp.task('sg-html', function () {
-  return gulp.src(['src/style-guide/style-guide.html'])
+  return gulp.src(['src/style-guide/index.html'])
         .pipe(inject(gulp.src(['src/patternlab/**/*.htm']), {
-          starttag: '<!-- inject:base:{{ext}} -->',
+          starttag: '<!-- inject:atoms:{{ext}} -->',
           transform: function (filePath, file) {
             // return file contents as string
             return file.contents.toString('utf8')
@@ -135,8 +135,8 @@ gulp.task('default', ['clean'], function() {
 gulp.task('watch', function() {
 
   // Watch .html/.htm files
-  gulp.watch(['src/{,*/}*.{htm,html}', '!src/patternlab/**/*.htm'], ['html']);
-  gulp.watch(['src/patternlab/**/*.htm'], ['sg-html']);
+  gulp.watch(['src/{,*/}*.{htm,html}','!src/style-guide/{,*}.{htm,html}', '!src/patternlab/**/*.{htm,html}'], ['html']);
+  gulp.watch(['src/style-guide/{,*}.{htm,html}', 'src/patternlab/**/*.htm'], ['sg-html']);
 
   // Watch .scss files
   gulp.watch('src/sass/{,*/}*.scss', ['styles']);
