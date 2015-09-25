@@ -41,17 +41,11 @@ gulp.task('sg-html', function () {
         .pipe(inject(gulp.src(['src/patternlab/**/*.htm']), {
           starttag: '<!-- inject:atoms:{{ext}} -->',
           transform: function (filePath, file) {
-            // return file contents as string
             return file.contents.toString('utf8')
           }
         }))
         .pipe(gulp.dest('dist/style-guide'));
 });
-// gulp.task('default', function () {
-//     return gulp.src('intro.md')
-//         .pipe(markdown())
-//         .pipe(gulp.dest('dist'));
-// });
 
 // Styles
 gulp.task('styles', function() {
@@ -60,7 +54,7 @@ gulp.task('styles', function() {
       .pipe(sass({ style: 'expanded', errLogToConsole: true}))
       .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(sourcemaps.write('dist/stylesheet'))
-    .pipe(gulp.dest('dist/stylesheet'))
+    .pipe(gulp.dest('dist/stylesheet/'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest('dist/minified-statics/styles'));
